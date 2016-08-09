@@ -50,7 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'showHeader' => false,
-                    'summary' => 'Phones &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['phone/create', 'psnId' => $model->id ]), 'title' => 'Add Phone', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                    'summary' =>'',
+                    'caption' => 'Phones &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['phone/create', 'psnId' => $model->id ]), 'title' => 'Add Phone', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 
                         'type',
@@ -73,7 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'showHeader' => false,
-                    'summary' =>'Email &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['email/create', 'psnId' => $model->id ]), 'title' => 'Add Email Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                    'summary' => '',
+                    'caption' =>'Email &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['email/create', 'psnId' => $model->id ]), 'title' => 'Add Email Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 'id',
                         'type',

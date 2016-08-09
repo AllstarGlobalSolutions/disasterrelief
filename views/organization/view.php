@@ -44,8 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-6">
             <?php
-                $searchModel = new EmailSearch();
-                $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] );
+                 $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Email::find()->where( [ 'organizationId' => $model->id ] ) ] );
                 ?>
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
@@ -90,8 +89,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6">
             <?php
-            $searchModel = new PhoneSearch();
-            $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] ); ?>
+            $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Phone::find()->where( [ 'organizationId' => $model->id ] ) ] );
+             ?>
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     //'filterModel' => $searchModel,
@@ -121,7 +120,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-6">
             <?php
             $searchModel = new PersonSearch();
-            $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] );   ?>
+            $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] );
+               ?>
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     //'filterModel' => $searchModel,
