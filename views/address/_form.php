@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Address */
 /* @var $form yii\widgets\ActiveForm */
+$type = ['Home','Work'];
 $countries = ['USA','China','Canada','Japan']; 
 ?>
 
@@ -19,7 +20,7 @@ $countries = ['USA','China','Canada','Japan'];
     ]
     ); ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropDownList($type,['prompt' => 'Select a Type']) ?>
 
     <?= $form->field($model, 'street1')->textInput(['maxlength' => true]) ?>
     

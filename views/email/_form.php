@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Email */
 /* @var $form yii\widgets\ActiveForm */
+$type = ['Home','Work'];
 ?>
 
 <div class="email-form">
@@ -18,7 +19,7 @@ use yii\widgets\ActiveForm;
          ]
     ); ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropDownList($type,['prompt' => 'Select a Type']) ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 

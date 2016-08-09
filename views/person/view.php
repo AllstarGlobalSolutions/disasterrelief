@@ -99,7 +99,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'showHeader' => false,
-                    'summary' => 'Address &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['address/create', 'psnId' => $model->id ]), 'title' => 'Add Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                    'summary' => '',
+                    'caption' => 'Address &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['address/create', 'psnId' => $model->id ]), 'title' => 'Add Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 
                         'type',

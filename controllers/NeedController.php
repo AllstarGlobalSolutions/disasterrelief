@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Person;
-use app\models\PersonSearch;
+use app\models\Need;
+use app\models\NeedSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PersonController implements the CRUD actions for Person model.
+ * NeedController implements the CRUD actions for Need model.
  */
-class PersonController extends Controller
+class NeedController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class PersonController extends Controller
     }
 
     /**
-     * Lists all Person models.
+     * Lists all Need models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PersonSearch();
+        $searchModel = new NeedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Displays a single Person model.
+     * Displays a single Need model.
      * @param integer $id
      * @return mixed
      */
@@ -57,34 +57,17 @@ class PersonController extends Controller
     }
 
     /**
-     * Creates a new Person model.
+     * Creates a new Need model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($orgId)
+    public function actionCreate()
     {
-        $model = new Person();
+        $model = new Need();
 
-      /*  if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }*/
-        $model->organizationId = $orgId;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) 
-        {
-            return $this->redirect(['/organization/view', 'id' => $orgId]);
-        }         
-        elseif (Yii::$app->request->isAjax)         
-        {
-            return $this->renderAjax('_form', [
-                        'model' => $model
-            ]);
-        }        
-        else         
-        {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -92,7 +75,7 @@ class PersonController extends Controller
     }
 
     /**
-     * Updates an existing Person model.
+     * Updates an existing Need model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,17 +83,10 @@ class PersonController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } 
-        elseif (Yii::$app->request->isAjax)         
-        {
-            return $this->renderAjax('_form', [
-                        'model' => $model
-            ]);
-        }
-        else 
-        {
+        } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -118,39 +94,28 @@ class PersonController extends Controller
     }
 
     /**
-     * Deletes an existing Person model.
+     * Deletes an existing Need model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-       // $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
 
-       // return $this->redirect(['index']);
-        $model = $this->findModel($id);
-        $orgId = $model->organizationId;
-     //   $psnId = $model->personId;
-        $model->delete();
-
-        if ( $orgId !== null )
-       //     return $this->redirect(['/organization/view', 'id' => $orgId ]);
-        //else
-       //  if ( $psnId !== null )
-                 return $this->redirect(['/organization/view', 'id' => $orgId ]);
-            //return $this->redirect([ '/person/view', 'id' => $personId ]);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Person model based on its primary key value.
+     * Finds the Need model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Person the loaded model
+     * @return Need the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Person::findOne($id)) !== null) {
+        if (($model = Need::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

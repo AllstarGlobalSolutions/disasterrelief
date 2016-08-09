@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Person */
 /* @var $form yii\widgets\ActiveForm */
+$type = ['Donor'];
 ?>
 
 <div class="person-form">
@@ -20,6 +21,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'firstName')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lastName')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'position')->dropDownList($type,['prompt' => 'Select a Type']) //not yet update the table?>
 
     <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
 

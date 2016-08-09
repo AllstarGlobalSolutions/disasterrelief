@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Phone */
 /* @var $form yii\widgets\ActiveForm */
+$type = ['Home','Work'];
 ?>
 
 <div class="phone-form">
@@ -16,18 +17,8 @@ use yii\widgets\ActiveForm;
                 ]
     ]); ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
-    <?/*= echoCHtml::dropDownList('type','',array('type', 1=>'Home', 2=>'Work'),
-        array(
-        'ajax'=>array(
-        'type'=>'POST',
-        'url'=>Yii::app()->createUrl('site/getType'),
-        'update'=>'#city',
-        'data'=>array('province'=>'js:$("#province").val()'),
-        )
-        )
-        );*/ ?>
-
+    <?= $form->field($model, 'type')->dropDownList($type,['prompt' => 'Select a Type']) ?>
+   
     <?= $form->field($model, 'countryCode')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'number')->textInput(['maxlength' => true]) ?>

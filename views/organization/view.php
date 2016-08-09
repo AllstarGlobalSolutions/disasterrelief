@@ -44,45 +44,37 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-6">
             <?php
-                 $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Email::find()->where( [ 'organizationId' => $model->id ] ) ] );
-                ?>
+            $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Person::find()->where( [ 'organizationId' => $model->id ] ) ] );
+               ?>
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     //'filterModel' => $searchModel,
                     'showHeader' => false,
-                // 'showFooter' => true,
-
+                //  'showFooter' => true,
                     'summary' => '',
-                    'caption' =>'Email &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['email/create', 'orgId' => $model->id ]), 'title' => 'Add Email Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                    'caption' => 'Person &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['person/create', 'orgId' => $model->id ]), 'title' => 'Add Person', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 
-                    //  'id',
-                        'type',
-                        'address',
-                        'organizationId',
-                    //  'personId',
+                    //    'id',
+                        'firstName',
+                        'lastName',
+                        'position',
+                    //   'organizationId',
 
-                        ['class' => 'yii\grid\ActionColumn',
-
-                        'visibleButtons' => [
-
-                            'view' => false
-                        ],
+                        ['class' => 'yii\grid\ActionColumn',                        
                         'buttons'=>[
-
                             'update' => function($url, $model, $key ) {
-
-                                return Html::a( '<span class="glyphicon glyphicon-edit"></span>', Url::to(['email/update','id' => $model->id ]) );
+                                return Html::a( '<span class="glyphicon glyphicon-edit"></span>', Url::to(['person/update','id' => $model->id ]) );
                             },
                             'delete' => function($url,$model,$key ){
-                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['email/delete','id' => $model->id ]), ['data-method'=>'post']);
+                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['person/delete','id' => $model->id ]), ['data-method'=>'post']);
 
                             }
                         ]],
 
                     ],
                 ]); ?>
-        </div>
+            </div>
     </div>
 
 
@@ -106,7 +98,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         'number',
 
                         ['class' => 'yii\grid\ActionColumn',
+                        'visibleButtons' =>[
+                            'view' => false
+                        ],
                         'buttons'=>[
+                            'update' => function($url, $model, $key ) {
+                                return Html::a( '<span class="glyphicon glyphicon-edit"></span>', Url::to(['phone/update','id' => $model->id ]) );
+                            },
                             'delete' => function($url,$model,$key ){
                                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['phone/delete','id' => $model->id ]), ['data-method'=>'post']);
 
@@ -115,31 +113,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ],
                 ]); ?>
-        </div>
+        </div>       
 
         <div class="col-md-6">
             <?php
-            $searchModel = new PersonSearch();
-            $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] );
-               ?>
+                 $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Email::find()->where( [ 'organizationId' => $model->id ] ) ] );
+                ?>
             <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     //'filterModel' => $searchModel,
                     'showHeader' => false,
-                //  'showFooter' => true,
-                    'summary' =>'Person &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['person/create', 'orgId' => $model->id ]), 'title' => 'Add Person', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                // 'showFooter' => true,
+
+                    'summary' => '',
+                    'caption' =>'Email &nbsp;&nbsp;' . Html::button('Add', ['value' => Url::to(['email/create', 'orgId' => $model->id ]), 'title' => 'Add Email Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 
-                    //    'id',
-                        'firstName',
-                        'lastName',
-                        'position',
-                    //   'organizationId',
+                    //  'id',
+                        'type',
+                        'address',
+                        'organizationId',
+                    //  'personId',
 
                         ['class' => 'yii\grid\ActionColumn',
+
+                        'visibleButtons' => [
+                            'view' => false
+                        ],
                         'buttons'=>[
+                            'update' => function($url, $model, $key ) {
+                                return Html::a( '<span class="glyphicon glyphicon-edit"></span>', Url::to(['email/update','id' => $model->id ]) );
+                            },
                             'delete' => function($url,$model,$key ){
-                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['person/delete','id' => $model->id ]), ['data-method'=>'post']);
+                                return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['email/delete','id' => $model->id ]), ['data-method'=>'post']);
 
                             }
                         ]],
@@ -152,8 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-12">
             <?php
-            $searchModel = new AddressSearch();
-            $dataProvider = $searchModel->search( [ 'oranizationId' => $model->id] );
+            $dataProvider = new yii\data\ActiveDataProvider( [ 'query' => app\models\Address::find()->where( [ 'organizationId' => $model->id ] ) ] );
             ?>
          <?//= Html::button('Add Address', ['value' => Url::to(['address/create', 'orgId' => $model->id ]), 'title' => 'Add Address', 'class' => 'showModalButton btn btn-success']) ?>
 
@@ -162,7 +167,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'filterModel' => $searchModel,
                     'showHeader' => false,
                 //  'showFooter' => true,
-                    'summary' => 'Address &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['address/create', 'orgId' => $model->id ]), 'title' => 'Add Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
+                    'summary' => '',
+                    'caption' => 'Address &nbsp;&nbsp;' .  Html::button('Add', ['value' => Url::to(['address/create', 'orgId' => $model->id ]), 'title' => 'Add Address', 'class' => 'showModalButton btn btn-sm btn btn-success']),
                     'columns' => [
                 
                     //    'id',
@@ -177,7 +183,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     //    'personId',
 
                         ['class' => 'yii\grid\ActionColumn',
+                        'visibleButtons' =>[
+                            'view' => false
+                        ],
                         'buttons'=>[
+                            'update' => function($url, $model, $key ) {
+                                return Html::a( '<span class="glyphicon glyphicon-edit"></span>', Url::to(['address/update','id' => $model->id ]) );
+                            },
                             'delete' => function($url,$model,$key ){
                                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['address/delete','id' => $model->id ]), ['data-method'=>'post']);
 

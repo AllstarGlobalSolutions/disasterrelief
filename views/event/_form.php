@@ -6,13 +6,14 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Event */
 /* @var $form yii\widgets\ActiveForm */
+$type = ['Flood', 'Earthquake', 'Hurricane', 'Typhoon', 'Tornado', 'Mudslide', 'Fire', 'Other'];
 ?>
 
 <div class="event-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropDownList(['prompt' => 'Select a Type']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
