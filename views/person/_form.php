@@ -14,7 +14,7 @@ $type = ['Donor'];
     <?php $form = ActiveForm::begin(
         [
                 'options' => [
-                    'id' => 'create-phone-form'
+                    'id' => 'create-person-form'
                 ]
         ]); ?>
 
